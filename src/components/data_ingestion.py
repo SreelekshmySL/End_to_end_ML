@@ -2,11 +2,13 @@ import os
 import sys
 from src.exception import CustomException
 from src.logger import logging
-import pandas as pd
+from src.components.data_transformation import DataTransformation,DataTransformationConfig
 
+import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 
+@dataclass
 class DataIngestionConfig:
     # specifying paths for train,test outputs from this file as well as for raw data
     # artifacts is the folder to be created
@@ -58,5 +60,10 @@ class DataIngestion:
 # testing this file
 if __name__=="__main__":
     obj = DataIngestion()
-    obj.initiate_data_ingestion()
+    train_data,test_data=obj.initiate_data_ingestion()
+
+    # testing data_transformation class
+    data_transformation = DataTransformation()
+    data_transformation.initiate_data_transformation(train_data,test_data)
+
 
