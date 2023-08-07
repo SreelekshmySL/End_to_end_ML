@@ -3,6 +3,7 @@ import sys
 from src.exception import CustomException
 from src.logger import logging
 from src.components.data_transformation import DataTransformation,DataTransformationConfig
+from src.components.model_trainer import ModelTrainerConfig,ModelTrainer
 
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -64,6 +65,12 @@ if __name__=="__main__":
 
     # testing data_transformation class
     data_transformation = DataTransformation()
-    data_transformation.initiate_data_transformation(train_data,test_data)
+    train_array,test_array,_=data_transformation.initiate_data_transformation(train_data,test_data)
+
+    #testing modelTrainer class
+    modeltrainer = ModelTrainer()
+    print(modeltrainer.initiate_model_trainer(train_array=train_array,test_array=test_array))
+
+
 
 
